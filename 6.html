@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>送给小猫🐱 Ava的礼物</title>
+    <style>
+        body, html {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ffffcc, #ffcccc); /* 黄粉渐变背景 */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            overflow: hidden; /* 隐藏溢出的 emoji */
+        }
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            background: #fff5e1;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1; /* 确保容器在 emoji 之上 */
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #ff6f61;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 1.2em;
+            color: #444;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1em;
+            color: #fff;
+            background-color: #ff6f61;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #ff8a75;
+        }
+        #hiddenMessage {
+            display: none;
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #555;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .emoji-rain {
+            position: absolute;
+            font-size: 30px; /* emoji大小 */
+            color: #ff6f61;
+            opacity: 0.9; /* 保持原始透明度 */
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% {
+                transform: translateY(-2000px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="emoji-rain-container"></div>
+    <div class="container">
+        <h1>Slyvester🦊💗Ava🐱</h1>
+        <p>小猫和大狐狸的童话世界🌈🏰</p>
+        <p>亲爱的小猫🐱，大狐狸🦊最喜欢看你开心的样子！</p>
+        <p>你在我的世界里，就像是一道温暖的光，每次互动都让我觉得特别。</p>
+        <p>有些话藏在心里，现在点击按钮看看吧～</p>
+        <button onclick="showMessage()">点这里～</button>
+        <p id="hiddenMessage">🌟 小猫🐱，你是我的星星和月亮，永远闪耀在我的世界里！🌙</p>
+    </div>
+
+    <script>
+        function spawnEmoji() {
+            const emoji = document.createElement('div');
+            emoji.className = 'emoji-rain';
+            emoji.textContent = ['🦊', '🐱', '💖', '🌸', '✨'][Math.floor(Math.random() * 5)];
+            const x = Math.random() * window.innerWidth;
+            const y = -Math.random() * 2000;
+            emoji.style.left = `${x}px`;
+            emoji.style.top = `${y}px`;
+            emoji.style.animationDuration = `${Math.random() * 5 + 3}s`;
+            document.querySelector('.emoji-rain-container').appendChild(emoji);
+
+            emoji.addEventListener('animationend', () => {
+                document.querySelector('.emoji-rain-container').removeChild(emoji);
+            });
+        }
+
+        setInterval(spawnEmoji, 100); // 增加下落频率
+    </script>
+</body>
+</html>
